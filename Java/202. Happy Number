@@ -1,0 +1,31 @@
+public boolean isHappy(int n) {
+        if(n <= 0)
+            return false;
+        
+        Set<Integer> setValues = new HashSet<>();
+        
+        return isHappySet(setValues, n);
+        
+    }
+    
+    public static boolean isHappySet(Set<Integer> setValues, int n) {
+        
+            if(n == 1) {
+                return true;
+            }
+        
+            int sum = 0;
+            int temp = n;
+            
+            while(temp > 0) {
+                int sq = temp%10;
+                temp = (temp/10);
+                sum = sum + sq*sq;
+            }
+            
+            if(!setValues.add(sum)) {
+                return false;
+            } 
+        
+            return isHappySet(setValues, sum);
+    }
